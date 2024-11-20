@@ -16,4 +16,6 @@ const tokenModal=new dbModule.Schema({
    liquiditylocked:{type:Boolean,default:true}
 })
 
-const Token=dbModule.model(tokenModal,"Token")
+const Token=dbModule.model("Token",tokenModal)
+
+module.exports=Token

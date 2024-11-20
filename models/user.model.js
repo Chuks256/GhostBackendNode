@@ -1,6 +1,5 @@
 const dbModule=require('../config/dbConfig.config');
 
-
 const UserModal=new dbModule.Schema({
     user_session_id: {type:String},
     point:{type:String},
@@ -11,4 +10,6 @@ const UserModal=new dbModule.Schema({
     referrals:{type:String}
 });
 
-const User=dbModule.model(UserModal,"User")
+const User=dbModule.model("User",UserModal);
+
+module.exports=User

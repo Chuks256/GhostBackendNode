@@ -2,18 +2,30 @@
 const jwt=require("jsonwebtoken");
 const user=require("../models/user.model.js");
 const token = require("../models/token.model.js")
+const wsModule = require("websocket");
 
+class api_functions{
 
-class functions{
+    constructor(){
+        this.SOCKET_SERVER_PORT=4682;
+        this.SESSION_STORAGE=[];
+        this.NODE_COUNT=0;
+    }
 
     async activateSocketFunction(state=false){
         if(state===true){
-
+            const socketServer=new wsModule.server({port:this.SOCKET_SERVER_PORT});
+            socketServer.on("connection",async(session)=>{
+                this.SESSION_STORAGE.push(session);
+                this.NODE_COUNT+=1;
+                this.NODE_COUNT>1 ?
+                console.log(`${this.NODE_COUNT} Nodes connected to trading server`)
+                :
+                console.log(`${this.NODE_COUNT} Node connected to trading server`)
+            })
         }
         else
-        if(state===true){
             console.log("Something went wrong connecting with socket server")
-        }
     }
 
     async onBoardNewUser(req,res){}
@@ -45,4 +57,4 @@ class functions{
     async isServerOk(req,res){}
 }
 
-module.exports=functions
+module.exports=api_functions
