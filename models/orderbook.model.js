@@ -5,9 +5,12 @@ const OrderbookModel=new dbModule.Schema({
     user_session_id: {type:String},
     token_id:{type:String},
     userpubaddr:{type:String},
-    quantity:{type:Number,default:0},
-    price:{type:Number,default:0},
+    AmountOfBase:{type:Number,default:0.00},
+    quantityOfToken:{type:Number,default:0},
+    currentPrice:{type:Number,default:0.00},
     type:{type:String}
 });
 
-const orderbook=dbModule.model(OrderbookModel,"orderbook")
+const orderbook=dbModule.model("orderbook",OrderbookModel);
+
+module.exports=orderbook;

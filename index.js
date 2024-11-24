@@ -14,7 +14,7 @@ app.use(express.json());
 app.disable("x-powered-by");
 
 // activate realtime socket server 
-new apiFunction().activateSocketFunction();
+new apiFunction().activateSocketFunction(true)
 
 app.listen(port,()=>{
     console.log("listening for incoming connection")
